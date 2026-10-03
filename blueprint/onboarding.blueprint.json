@@ -1,4 +1,4 @@
-{
+﻿{
     "name": "onboarding",
     "flow": [
         {
@@ -6,7 +6,7 @@
             "module": "gateway:CustomWebHook",
             "version": 1,
             "parameters": {
-                "hook": 3820749,
+                "hook": "YOUR_WEBHOOK_HOOK_ID",
                 "maxResults": 1
             },
             "mapper": {},
@@ -53,7 +53,7 @@
             "module": "gemini-ai:createACompletionGeminiPro",
             "version": 1,
             "parameters": {
-                "__IMTCONN__": 11470679
+                "__IMTCONN__": "YOUR_IMTCONN_GEMINI_ID"
             },
             "mapper": {
                 "model": "gemini-3.5-flash-lite",
@@ -200,7 +200,7 @@
                                 "scoped": "true",
                                 "connection": "gemini-ai-q9zyjp"
                             },
-                            "label": "Shamil's Gemini AI connection"
+                            "label": "Your Gemini AI connection"
                         }
                     }
                 },
@@ -619,7 +619,7 @@
             "module": "json:ParseJSON",
             "version": 1,
             "parameters": {
-                "type": 610651
+                "type": "YOUR_DATA_STRUCTURE_ID"
             },
             "mapper": {
                 "json": "{{2.result}}"
@@ -727,7 +727,7 @@
                     "module": "google-sheets:addRow",
                     "version": 2,
                     "parameters": {
-                        "__IMTCONN__": 11471858
+                        "__IMTCONN__": "YOUR_IMTCONN_GOOGLE_SHEETS_ID"
                     },
                     "mapper": {
                         "from": "drive",
@@ -738,7 +738,7 @@
                             "2": "{{3.error.message}}"
                         },
                         "sheetId": "Error Log",
-                        "spreadsheetId": "/1MXBjXxNBc0O0fm5nCMCjcIzF_gGj4S-m3IDU2y8i-As",
+                        "spreadsheetId": "/YOUR_SPREADSHEET_ID",
                         "includesHeaders": true,
                         "insertDataOption": "INSERT_ROWS",
                         "useColumnHeaders": false,
@@ -798,7 +798,7 @@
                                         "scoped": "true",
                                         "connection": "google"
                                     },
-                                    "label": "Shamil's Google connection (kshamil502@gmail.com)"
+                                    "label": "Your Google connection"
                                 }
                             }
                         },
@@ -1056,13 +1056,13 @@
                     "module": "slack:CreateMessage",
                     "version": 4,
                     "parameters": {
-                        "__IMTCONN__": 11473686
+                        "__IMTCONN__": "YOUR_IMTCONN_SLACK_ID"
                     },
                     "mapper": {
                         "text": "Onboarding FAILED for {{1.client_name}}\nError: {{3.error.message}}",
                         "parse": false,
                         "mrkdwn": true,
-                        "channel": "C0C6TA5MH08",
+                        "channel": "YOUR_SLACK_CHANNEL_ERRORS_ID",
                         "channelType": "public",
                         "channelWType": "list"
                     },
@@ -1116,7 +1116,7 @@
                                         "scoped": "true",
                                         "connection": "slack2"
                                     },
-                                    "label": "Slack new-projects workspace (new-projectsworkspace.slack.com - kshamil502)"
+                                    "label": "Your Slack workspace"
                                 }
                             }
                         },
@@ -1245,7 +1245,7 @@
             "module": "google-email:sendAnEmail",
             "version": 4,
             "parameters": {
-                "__IMTCONN__": 11471498
+                "__IMTCONN__": "YOUR_IMTCONN_GMAIL_ID"
             },
             "mapper": {
                 "to": [
@@ -1316,7 +1316,7 @@
                                 "scoped": "true",
                                 "connection": "google-email"
                             },
-                            "label": "Shamil's Gmail connection"
+                            "label": "Your Gmail connection"
                         }
                     }
                 },
@@ -1492,7 +1492,7 @@
             "module": "google-sheets:addRow",
             "version": 2,
             "parameters": {
-                "__IMTCONN__": 11471858
+                "__IMTCONN__": "YOUR_IMTCONN_GOOGLE_SHEETS_ID"
             },
             "mapper": {
                 "from": "drive",
@@ -1510,7 +1510,7 @@
                     "9": "started"
                 },
                 "sheetId": "Master Tracker",
-                "spreadsheetId": "/1MXBjXxNBc0O0fm5nCMCjcIzF_gGj4S-m3IDU2y8i-As",
+                "spreadsheetId": "/YOUR_SPREADSHEET_ID",
                 "includesHeaders": true,
                 "insertDataOption": "INSERT_ROWS",
                 "useColumnHeaders": false,
@@ -1570,7 +1570,7 @@
                                 "scoped": "true",
                                 "connection": "google"
                             },
-                            "label": "Shamil's Google connection (kshamil502@gmail.com)"
+                            "label": "Your Google connection"
                         }
                     }
                 },
@@ -1835,13 +1835,13 @@
             "module": "slack:CreateMessage",
             "version": 4,
             "parameters": {
-                "__IMTCONN__": 11473686
+                "__IMTCONN__": "YOUR_IMTCONN_SLACK_ID"
             },
             "mapper": {
                 "text": "*New Project Started: {{1.client_name}}*\nType: {{3.project_type}} | Value: ₹{{1.deal_value}} | Deadline: {{3.deadline_weeks}} weeks\nSales rep: {{1.sales_rep}} | PM: {{1.pm_name}}\nFlags: {{2.result.risk_flags}}",
                 "parse": false,
                 "mrkdwn": true,
-                "channel": "C0C6T1PFN1E",
+                "channel": "YOUR_SLACK_CHANNEL_NEW_PROJECT_ID",
                 "channelType": "public",
                 "channelWType": "list"
             },
@@ -2047,7 +2047,7 @@
             "module": "google-sheets:addRow",
             "version": 2,
             "parameters": {
-                "__IMTCONN__": 11471858
+                "__IMTCONN__": "YOUR_IMTCONN_GOOGLE_SHEETS_ID"
             },
             "mapper": {
                 "from": "drive",
@@ -2060,7 +2060,7 @@
                     "4": "To Do"
                 },
                 "sheetId": "Project Board",
-                "spreadsheetId": "/1MXBjXxNBc0O0fm5nCMCjcIzF_gGj4S-m3IDU2y8i-As",
+                "spreadsheetId": "/YOUR_SPREADSHEET_ID",
                 "includesHeaders": true,
                 "insertDataOption": "INSERT_ROWS",
                 "useColumnHeaders": false,
@@ -2120,7 +2120,7 @@
                                 "scoped": "true",
                                 "connection": "google"
                             },
-                            "label": "Shamil's Google connection (kshamil502@gmail.com)"
+                            "label": "Your Google connection"
                         }
                     }
                 },
