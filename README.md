@@ -52,14 +52,14 @@ flowchart LR
 
 ## Tech Stack
 
-| Layer | Tool |
-|---|---|
-| Automation platform | Make |
-| AI model | Google Gemini (Flash-Lite) |
-| Trigger | Custom webhook, fed by a plain HTML form |
-| Data store / project board | Google Sheets |
-| Client email | Gmail |
-| Team notifications | Slack |
+| Layer                      | Tool                                     |
+| -------------------------- | ---------------------------------------- |
+| Automation platform        | Make                                     |
+| AI model                   | Google Gemini (Flash-Lite)               |
+| Trigger                    | Custom webhook, fed by a plain HTML form |
+| Data store / project board | Google Sheets                            |
+| Client email               | Gmail                                    |
+| Team notifications         | Slack                                    |
 
 ## Example
 
@@ -82,12 +82,21 @@ flowchart LR
 ```json
 {
   "project_type": "Website build",
-  "deliverables": ["5-page website", "Contact form", "WhatsApp button", "Basic SEO"],
+  "deliverables": [
+    "5-page website",
+    "Contact form",
+    "WhatsApp button",
+    "Basic SEO"
+  ],
   "deadline_weeks": 6,
   "risk_flags": ["Content writing is not clearly included in the quote"],
   "tasks": [
-    {"title": "Kickoff call and content collection", "week": 1, "owner_role": "PM"},
-    {"title": "Design mockups", "week": 2, "owner_role": "Designer"}
+    {
+      "title": "Kickoff call and content collection",
+      "week": 1,
+      "owner_role": "PM"
+    },
+    { "title": "Design mockups", "week": 2, "owner_role": "Designer" }
   ],
   "welcome_email": "..."
 }
@@ -97,11 +106,11 @@ flowchart LR
 
 The workbook has three tabs. Row 1 must contain these headers exactly:
 
-| Tab | Columns |
-|---|---|
+| Tab                | Columns                                                                                      |
+| ------------------ | -------------------------------------------------------------------------------------------- |
 | **Master Tracker** | Timestamp, Client, Contact, Email, Value, Project Type, Weeks, Sales Rep, Risk Flags, Status |
-| **Project Board** | Project, Task, Owner Role, Due Date, Status |
-| **Error Log** | Timestamp, Client, Error Message |
+| **Project Board**  | Project, Task, Owner Role, Due Date, Status                                                  |
+| **Error Log**      | Timestamp, Client, Error Message                                                             |
 
 ## Error Handling
 
@@ -137,51 +146,28 @@ An error-handling route is attached to the AI and parsing steps. When one of the
 
 ## Testing
 
-| Test case | Expected result |
-|---|---|
-| Normal, detailed deal | Email sent, 1 tracker row, 1 Slack message, 6 to 9 board rows |
-| Vague deal ("website, ASAP") | Risk flags point out the missing scope and deadline |
-| Large multi-service deal | Task count stays within range, weeks never exceed the deadline |
-| Deliberate failure (invalid AI output) | Error Log row, Slack error alert, run marked as failed |
+| Test case                              | Expected result                                                |
+| -------------------------------------- | -------------------------------------------------------------- |
+| Normal, detailed deal                  | Email sent, 1 tracker row, 1 Slack message, 6 to 9 board rows  |
+| Vague deal ("website, ASAP")           | Risk flags point out the missing scope and deadline            |
+| Large multi-service deal               | Task count stays within range, weeks never exceed the deadline |
+| Deliberate failure (invalid AI output) | Error Log row, Slack error alert, run marked as failed         |
 
 ## Screenshots
 
-| | |
-|---|---|
-| ![Scenario](screenshots/scenario.png) | ![Form](screenshots/form.png) |
-| ![Slack alert](screenshots/slack-message.png) | ![Welcome email](screenshots/welcome-email.png) |
-| ![Master Tracker](screenshots/sheet-tracker.png) | ![Project Board](screenshots/sheet-board.png) |
-| ![Error log](screenshots/error-log.png) | |
+|                                                  |                                                 |
+| ------------------------------------------------ | ----------------------------------------------- |
+| ![Scenario](screenshots/scenario.png)            | ![Form](screenshots/form.png)                   |
+| ![Slack alert](screenshots/slack-message.png)    | ![Welcome email](screenshots/welcome-email.png) |
+| ![Master Tracker](screenshots/sheet-tracker.png) | ![Project Board](screenshots/sheet-board.png)   |
 
 ## Repository Structure
 
 ```
 .
 ├── README.md
-├── form/
-│   ├── index.html
-│   └── config.example.js
+├── handover.html
 ├── blueprint/
 │   └── client-onboarding-blueprint.json
-├── screenshots/
-└── .gitignore
+└── screenshots/
 ```
-
-## Limitations and Next Steps
-
-- **The webhook has no authentication.** A shared-secret check (verified by a Make filter) is the first improvement. For production the form should post to a small server-side function that holds the webhook URL, so it is never exposed in browser code.
-- **Failed runs are replayed manually.** A production version could store failed runs and retry them automatically.
-- **Free-tier limits** apply to both the Gemini API (rate limits, occasional high-demand errors) and Make (monthly operation credits).
-- **Possible extensions:** create a project folder in Google Drive, push tasks to a project management tool such as Trello or monday.com, add a human approval step before the client email is sent, and add a weekly summary report.
-
-## What This Project Demonstrates
-
-- Webhook-triggered automation design in Make
-- Prompting an LLM for reliable structured (JSON) output
-- Data mapping, array iteration and multi-tool integration (Sheets, Gmail, Slack)
-- Production-minded thinking: error handling, alerting and secret hygiene
-- Building a small front end around an automation
-
----
-
-*Built as a portfolio project. All data is fictional.*
